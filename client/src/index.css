@@ -11,3 +11,7 @@ button{
 .no-scroll::-webkit-scrollbar{
   display: none;
 }
+
+.cl-drawerRoot{
+  z-index :100;
+}
