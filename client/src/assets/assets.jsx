@@ -1,5 +1,17 @@
 import logo from './logo.svg';
-import { Youtube, Instagram, Music2, Facebook, Twitter, Linkedin, Pin, Camera, Gamepad2, MessageCircle } from 'lucide-react';
+import {   Music2,    Pin, Camera, Gamepad2, MessageCircle } from 'lucide-react';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedin,
+  FaYoutube,
+  FaTiktok,
+  FaPinterest,
+  FaSnapchat,
+  FaDiscord,
+  FaTwitch
+} from "react-icons/fa";
 import image_1 from './image_1.jpg';
 import image_2 from './image_2.jpg';
 import image_3 from './image_3.jpg';
@@ -45,12 +57,22 @@ export function getProfileLink(platform, username) {
 }
 
 export const platformIcons = {
-    youtube: <Youtube color='#FF0000' className='bg-[#FF000010] size-10 p-2 rounded' />,
-    instagram: <Instagram color='#E1306C' className='bg-[#E1306C10] size-10 p-2 rounded' />,
+    youtube: <FaYoutube className='bg-[#FF000010] size-10 p-2 rounded text-[#FF0000]' />,
+    instagram: <FaInstagram className='bg-[#E1306C10] size-10 p-2 rounded text-[#E1306C]' />,
+    tiktok: <FaTiktok className='bg-[#00000010] size-10 p-2 rounded text-black' />,
+    facebook: <FaFacebook className='bg-[#1877F210] size-10 p-2 rounded text-[#1877F2]' />,
+    twitter: <FaTwitter className='bg-[#1DA1F210] size-10 p-2 rounded text-[#1DA1F2]' />,
+    linkedin: <FaLinkedin className='bg-[#0077B510] size-10 p-2 rounded text-[#0077B5]' />,
+    pinterest: <FaPinterest className='bg-[#E6002310] size-10 p-2 rounded text-[#E60023]' />,
+    snapchat: <FaSnapchat className='bg-[#FFFC0010] size-10 p-2 rounded text-[#FFFC00]' />,
+    twitch: <FaTwitch className='bg-[#9146FF10] size-10 p-2 rounded text-[#9146FF]' />,
+    discord: <FaDiscord className='bg-[#5865F210] size-10 p-2 rounded text-[#5865F2]' />,
+    // youtube: <Youtube color='#FF0000' className='bg-[#FF000010] size-10 p-2 rounded' />,
+    // instagram: <Instagram color='#E1306C' className='bg-[#E1306C10] size-10 p-2 rounded' />,
     tiktok: <Music2 color='#000000' className='bg-[#00000010] size-10 p-2 rounded' />,
-    facebook: <Facebook color='#1877F2' className='bg-[#1877F210] size-10 p-2 rounded' />,
-    twitter: <Twitter color='#1DA1F2' className='bg-[#1DA1F210] size-10 p-2 rounded' />,
-    linkedin: <Linkedin color='#0077B5' className='bg-[#0077B510] size-10 p-2 rounded' />,
+    // facebook: <Facebook color='#1877F2' className='bg-[#1877F210] size-10 p-2 rounded' />,
+    // twitter: <Twitter color='#1DA1F2' className='bg-[#1DA1F210] size-10 p-2 rounded' />,
+    // linkedin: <Linkedin color='#0077B5' className='bg-[#0077B510] size-10 p-2 rounded' />,
     pinterest: <Pin color='#E60023' className='bg-[#E6002310] size-10 p-2 rounded' />,
     snapchat: <Camera color='#FFFC00' className='bg-[#FFFC0010] size-10 p-2 rounded' />,
     twitch: <Gamepad2 color='#9146FF' className='bg-[#9146FF10] size-10 p-2 rounded' />,
