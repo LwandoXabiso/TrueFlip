@@ -20,19 +20,6 @@ Users can list, buy, and sell verified social media profiles through a secure ma
 
 ---
 
-## 📸 Preview
-
-### 🏠 Marketplace Home
-![Home Page](https://via.placeholder.com/1000x500.png?text=Marketplace+Home+Page)
-
-### 📦 Listing Page
-![Listing Page](https://via.placeholder.com/1000x500.png?text=Profile+Listings)
-
-### 🛠 Admin Dashboard
-![Admin Panel](https://via.placeholder.com/1000x500.png?text=Admin+Verification+Panel)
-
----
-
 ## 🚀 Features
 
 ### 👤 Users
@@ -81,6 +68,3 @@ Users can list, buy, and sell verified social media profiles through a secure ma
 ### Media Storage
 - 🖼 ImageKit (Image optimization & delivery)
 
----
-
-## 🧱 System Architecture
