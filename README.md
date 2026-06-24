@@ -1,7 +1,7 @@
 # 🛒 Social Profile Marketplace (PERN Stack)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/your-username/social-profile-marketplace)
-![Last Commit](https://img.shields.io/github/last-commit/[your-username/social-profile-marketplace](https://github.com/LwandoXabiso/TrueFlip))
+[![Last Commit](https://img.shields.io/github/last-commit/LwandoXabiso/TrueFlip)](https://github.com/LwandoXabiso/TrueFlip)
 ![License](https://img.shields.io/github/license/your-username/social-profile-marketplace)
 ![Node](https://img.shields.io/badge/Node.js-18+-green)
 ![React](https://img.shields.io/badge/React-Frontend-blue)
