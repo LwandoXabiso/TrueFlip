@@ -8,7 +8,8 @@ const FilterSidebar = ({showFilterPhone, setShowFilterPhone, filters, setFilters
 
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
-    const [search, setSearch] = useState(("search") || "")
+    //const [search, setSearch] = useState(("search") || "")
+    const [search, setSearch] = useState("");
 
     const onChangeSearch = (e)=>{
         if(e.target.value){

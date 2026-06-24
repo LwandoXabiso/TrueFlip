@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import {ArrowLeftIcon, FilterIcon} from 'lucide-react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useSearchParams} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import ListingCard from '../components/ListingCard'
 import FilterSidebar from '../components/FilterSidebar'
 
 const Marketplace = () => {
+
+  const [searchParams] = useSearchParams()
+  const search = searchParams.get("search")
 
   const navigate = useNavigate()
 
@@ -24,7 +27,7 @@ const Marketplace = () => {
 
   const filteredListings = listings.filter((listing)=>{
 
-    if(filters.platform && filter.platform.length > 0){
+    if(filters.platform && filters.platform.length > 0){
       if(!filters.platform.includes(listing.platform))
         return false
     }
@@ -49,7 +52,18 @@ const Marketplace = () => {
 
     if(filters.monetized && listing.monetized !== filters.monetized) 
       return false
-
+    
+    if(search){
+      const trimed = search.trim()
+      if(
+        !listing.title.toLowerCase().includes(trimed.toLowerCase()) &&
+        !listing.username.toLowerCase().includes(trimed.toLowerCase()) &&
+        !listing.description.toLowerCase().includes(trimed.toLowerCase()) &&
+        !listing.platform.toLowerCase().includes(trimed.toLowerCase()) &&
+        !listing.niche.toLowerCase().includes(trimed.toLowerCase()) 
+      )
+      return false
+    }
     return true
   })
 
