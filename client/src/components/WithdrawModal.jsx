@@ -1,0 +1,110 @@
+import React, {useState} from 'react'
+import {XIcon} from "lucide-react";
+import {useAuth} from "@clerk/clerk-react";
+import {useDispatch} from "react-redux";
+import toast from "react-hot-toast";
+import api from "../configs/axios.js";
+import {getAllUserListing} from "../app/features/listingSlice.js";
+
+const WithdrawModal = ({ onClose }) => {
+    const { getToken } = useAuth()
+    const dispatch = useDispatch()
+
+    const [amount, setAmount] = useState("")
+    const [account, setAccount] = useState([
+        {type: "text", name: "Account Holder Name", value: ""},
+        {type: "text", name: "Bank Name", value: ""},
+        {type: "number", name: "Account Number", value: ""},
+        {type: "text", name: "Account Type", value: ""},
+        {type: "text", name: "SWIFT", value: ""},
+        {type: "text", name: "Branch", value: ""},
+    ])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            //check if there is at least one field
+            if(account.length === 0) {
+                return toast.error('Please add at least one field')
+            }
+
+            //check all field are field
+            for(const field of account) {
+                if(!field.value) {
+                    return toast.error(`Please fill in the ${field.name} field`)
+                }
+            }
+
+            const confirm = window.confirm('Are you sure you want to submit')
+            if(!confirm) return;
+
+            const token = await getToken()
+            const { data } = await api.post('/api/listing/withdraw', {account, amount: parseInt(amount)}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            toast.dismiss();
+            toast.success(data.message || 'Credentials submitted successfully');
+
+            dispatch(getAllUserListing({ getToken }));
+            onClose();
+
+        } catch (err) {
+            toast.dismissAll();
+            toast.error(err.message || err?.response?.data?.message);
+        }
+    }
+    return (
+        <div className='fixed inset-0 flex items-center justify-center bg-black/70 bg-opacity-50 backdrop-blur z-100 sm:p-4'>
+            <div className='bg-white sm:rounded-lg shadow-2xl w-full max-w-lg h-screen sm:h-auto flex flex-col'>
+            {/* Header */}
+                <div className='flex items-center justify-between bg-gradient-to-r from-gray-600 to-g-400 text-white p-4 sm:rounded-t-lg'>
+                    <div className='flex-1 min-w-0'>
+                        <h3 className='font-semibold text-lg truncate'>Withdraw Funds</h3>
+                    </div>
+
+                    <button onClick={onClose} className='ml-4 p-1 hover:bg-white/20 hover:bg-opacity-20 rounded-lg transition-colors'>
+                        <XIcon className='h-6 w-6 '/>
+                    </button>
+                </div>
+
+            {/* Form */}
+                <form onSubmit={handleSubmit} className='flex flex-col  items-start gap-4 p-4 overflow-y-scroll'>
+                    <div className='grid grid-cols-[2fr_3fr_1fr] w-full items-center gap-2'>
+                        Amount
+                        <input
+                            type='number'
+                            className='w-full  px-2 py-1.5 text-sm border border-gray-300 rounded outline-indigo-400 '
+                            required
+                            value={amount}
+                            onChange={(e) => setAmount(e.target.value)}
+                        />
+                    </div>
+
+                    {account.map((field, index) => (
+                        <div key={index} className='grid grid-cols-[2fr_3fr_1fr] w-full items-center gap-2'>
+                            <label className='text-sm font-medium text-gray-800'>
+                                {field.name}
+                            </label>
+
+                            <input
+                                type={field.type}
+                                value={field.value}
+                                onChange={(e) => setAccount((prev) => prev.map((c, i) => (i === index ? {...c, value: e.target.value} : c)))}
+                                className='w-full px-2 py-1.5 text-sm border border-gray-300 rounded outline-indigo-400 '
+                            />
+                        </div>
+                    ))}
+
+                {/*  Submit button */}
+                    <button type='submit' className='bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-none mt-4'>
+                        Apply for Withdrawal
+                    </button>
+                </form>
+            </div>
+        </div>
+    )
+}
+export default WithdrawModal
